@@ -16,10 +16,10 @@ import { DebugCSS } from "./debug-css";
 
 const animationBackdropIn = stylex.keyframes({ from: { opacity: 0 }, to: { opacity: 1 } }); // prettier-ignore
 const animationBackdropOut = stylex.keyframes({ from: { opacity: 1 }, to: { opacity: 0 } }); // prettier-ignore
-const animationModalIn = stylex.keyframes({ from: { opacity: 0, transform: "scale(0.9875)" }, to: { opacity: 1, transform: "scale(1)" } }); // prettier-ignore
-const animationModalOut = stylex.keyframes({ from: { opacity: 1, transform: "scale(1)" }, to: { opacity: 0, transform: "scale(0.9875)" } }); // prettier-ignore
+const animationDialogIn = stylex.keyframes({ from: { opacity: 0, transform: "scale(0.9875)" }, to: { opacity: 1, transform: "scale(1)" } }); // prettier-ignore
+const animationDialogOut = stylex.keyframes({ from: { opacity: 1, transform: "scale(1)" }, to: { opacity: 0, transform: "scale(0.9875)" } }); // prettier-ignore
 
-const backdropStyles = stylex.create({
+const dialogStyles = stylex.create({
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.375)",
     inset: 0,
@@ -38,10 +38,7 @@ const backdropStyles = stylex.create({
     animationName: animationBackdropOut,
     animationTimingFunction: "ease",
   },
-});
-
-const modalStyles = stylex.create({
-  modal: {
+  dialog: {
     backgroundColor: "white",
     blockSize: "fit-content",
     borderRadius: 24,
@@ -54,16 +51,16 @@ const modalStyles = stylex.create({
     position: "fixed",
     zIndex: 100,
   },
-  modalAnimationIn: {
+  dialogAnimationIn: {
     animationDuration: "200ms",
     animationFillMode: "forwards",
-    animationName: animationModalIn,
+    animationName: animationDialogIn,
     animationTimingFunction: "ease",
   },
-  modalAnimationOut: {
+  dialogAnimationOut: {
     animationDuration: "200ms",
     animationFillMode: "forwards",
-    animationName: animationModalOut,
+    animationName: animationDialogOut,
     animationTimingFunction: "ease",
   },
 });
@@ -114,7 +111,7 @@ const typographyStyles = stylex.create({
   },
 });
 
-function ModalStyleAlert() {
+function DialogStyle1() {
   const animation = useContext(AnimationContext);
   const setAnimation = useContext(SetAnimationContext);
 
@@ -122,13 +119,13 @@ function ModalStyleAlert() {
     <>
       <div
         {...stylex.props(
-          backdropStyles.backdrop,
+          dialogStyles.backdrop,
           (() => {
             switch (animation) {
               case "IN":
-                return backdropStyles.backdropAnimationIn;
+                return dialogStyles.backdropAnimationIn;
               case "OUT":
-                return backdropStyles.backdropAnimationOut;
+                return dialogStyles.backdropAnimationOut;
             }
           })(),
         )}
@@ -136,88 +133,13 @@ function ModalStyleAlert() {
       />
       <div
         {...stylex.props(
-          modalStyles.modal,
+          dialogStyles.dialog,
           (() => {
             switch (animation) {
               case "IN":
-                return modalStyles.modalAnimationIn;
+                return dialogStyles.dialogAnimationIn;
               case "OUT":
-                return modalStyles.modalAnimationOut;
-            }
-          })(),
-          atom({
-            gap: 24,
-            maxInlineSize: 384,
-            padding: 24,
-          }),
-        )}
-        onAnimationEnd={() => setAnimation(handleAnimationEnd)}
-      >
-        {/* MASTHEAD */}
-        <div
-          {...stylex.props(
-            atom({
-              backgroundColor: "blue",
-              blockSize: 56,
-              borderRadius: 1e3,
-              inlineSize: 56,
-            }),
-            atom({ alignSelf: "center" }),
-          )}
-        />
-        <div {...stylex.props(typographyStyles.title, atom({ textAlign: "center" }))}>
-          Are you sure you want to continue? This action cannot be undone.
-        </div>
-        <div
-          {...stylex.props(
-            atom({
-              display: "grid",
-              gap: 16,
-              gridTemplateColumns: "1fr 1fr",
-            }),
-          )}
-        >
-          <button {...stylex.props(buttonStyles.primary)} onClick={() => setAnimation(toggleAnimation)}>
-            Click me
-          </button>
-          <button {...stylex.props(buttonStyles.secondary)} onClick={() => setAnimation(toggleAnimation)}>
-            Cancel
-          </button>
-        </div>
-      </div>
-    </>
-  );
-}
-
-function ModalStyleDialog() {
-  const animation = useContext(AnimationContext);
-  const setAnimation = useContext(SetAnimationContext);
-
-  return (
-    <>
-      <div
-        {...stylex.props(
-          backdropStyles.backdrop,
-          (() => {
-            switch (animation) {
-              case "IN":
-                return backdropStyles.backdropAnimationIn;
-              case "OUT":
-                return backdropStyles.backdropAnimationOut;
-            }
-          })(),
-        )}
-        onAnimationEnd={() => setAnimation(handleAnimationEnd)}
-      />
-      <div
-        {...stylex.props(
-          modalStyles.modal,
-          (() => {
-            switch (animation) {
-              case "IN":
-                return modalStyles.modalAnimationIn;
-              case "OUT":
-                return modalStyles.modalAnimationOut;
+                return dialogStyles.dialogAnimationOut;
             }
           })(),
           atom({ maxInlineSize: 512 }),
@@ -313,18 +235,93 @@ function ModalStyleDialog() {
   );
 }
 
+function DialogStyle2() {
+  const animation = useContext(AnimationContext);
+  const setAnimation = useContext(SetAnimationContext);
+
+  return (
+    <>
+      <div
+        {...stylex.props(
+          dialogStyles.backdrop,
+          (() => {
+            switch (animation) {
+              case "IN":
+                return dialogStyles.backdropAnimationIn;
+              case "OUT":
+                return dialogStyles.backdropAnimationOut;
+            }
+          })(),
+        )}
+        onAnimationEnd={() => setAnimation(handleAnimationEnd)}
+      />
+      <div
+        {...stylex.props(
+          dialogStyles.dialog,
+          (() => {
+            switch (animation) {
+              case "IN":
+                return dialogStyles.dialogAnimationIn;
+              case "OUT":
+                return dialogStyles.dialogAnimationOut;
+            }
+          })(),
+          atom({
+            gap: 24,
+            maxInlineSize: 384,
+            padding: 24,
+          }),
+        )}
+        onAnimationEnd={() => setAnimation(handleAnimationEnd)}
+      >
+        {/* MASTHEAD */}
+        <div
+          {...stylex.props(
+            atom({
+              backgroundColor: "blue",
+              blockSize: 56,
+              borderRadius: 1e3,
+              inlineSize: 56,
+            }),
+            atom({ alignSelf: "center" }),
+          )}
+        />
+        <div {...stylex.props(typographyStyles.title, atom({ textAlign: "center" }))}>
+          Are you sure you want to continue? This action cannot be undone.
+        </div>
+        <div
+          {...stylex.props(
+            atom({
+              display: "grid",
+              gap: 16,
+              gridTemplateColumns: "1fr 1fr",
+            }),
+          )}
+        >
+          <button {...stylex.props(buttonStyles.primary)} onClick={() => setAnimation(toggleAnimation)}>
+            Click me
+          </button>
+          <button {...stylex.props(buttonStyles.secondary)} onClick={() => setAnimation(toggleAnimation)}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+
 function App() {
-  const [modalStyleDialog, setModalStyleDialog] = useState<Animation>("HIDDEN");
-  const [modalStyleAlert, setModalStyleAlert] = useState<Animation>("HIDDEN");
+  const [dialog1, setDialog1] = useState<Animation>("HIDDEN");
+  const [dialog2, setDialog2] = useState<Animation>("HIDDEN");
 
   useEffect(() => {
     function handleKeydown(e: KeyboardEvent) {
       switch (e.key) {
         case "[":
-          setModalStyleAlert(toggleAnimation);
+          setDialog1(toggleAnimation);
           break;
         case "]":
-          setModalStyleDialog(toggleAnimation);
+          setDialog2(toggleAnimation);
           break;
       }
     }
@@ -335,14 +332,14 @@ function App() {
   return (
     <>
       <DebugCSS />
-      {modalStyleDialog !== "HIDDEN" && (
-        <AnimationProvider animation={modalStyleDialog} setAnimation={setModalStyleDialog}>
-          <ModalStyleDialog />
+      {dialog1 !== "HIDDEN" && (
+        <AnimationProvider animation={dialog1} setAnimation={setDialog1}>
+          <DialogStyle1 />
         </AnimationProvider>
       )}
-      {modalStyleAlert !== "HIDDEN" && (
-        <AnimationProvider animation={modalStyleAlert} setAnimation={setModalStyleAlert}>
-          <ModalStyleAlert />
+      {dialog2 !== "HIDDEN" && (
+        <AnimationProvider animation={dialog2} setAnimation={setDialog2}>
+          <DialogStyle2 />
         </AnimationProvider>
       )}
     </>
