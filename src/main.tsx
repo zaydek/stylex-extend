@@ -2,8 +2,16 @@ import "./comeau.css";
 
 import { inline as atom } from "@stylex-extend/core";
 import * as stylex from "@stylexjs/stylex";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
+import {
+  Animation,
+  AnimationContext,
+  AnimationProvider,
+  SetAnimationContext,
+  handleAnimationEnd,
+  toggleAnimation,
+} from "./animation-provider";
 import { DebugCSS } from "./debug-css";
 
 const animationBackdropIn = stylex.keyframes({ from: { opacity: 0 }, to: { opacity: 1 } }); // prettier-ignore
@@ -105,46 +113,6 @@ const typographyStyles = stylex.create({
     lineHeight: 1.375,
   },
 });
-
-type Animation = "HIDDEN" | "IN" | "VISIBLE" | "OUT";
-
-const AnimationContext = createContext<Animation>("HIDDEN");
-const SetAnimationContext = createContext<React.Dispatch<React.SetStateAction<Animation>>>(() => {});
-
-function toggleAnimation(prev: Animation): Animation {
-  switch (prev) {
-    case "HIDDEN":
-      return "IN";
-    case "VISIBLE":
-      return "OUT";
-    default:
-      return prev;
-  }
-}
-
-function handleAnimationEnd(prev: Animation): Animation {
-  switch (prev) {
-    case "IN":
-      return "VISIBLE";
-    case "OUT":
-      return "HIDDEN";
-    default:
-      return prev;
-  }
-}
-
-type AnimationProviderProps = React.PropsWithChildren<{
-  animation: Animation;
-  setAnimation: React.Dispatch<React.SetStateAction<Animation>>;
-}>;
-
-function AnimationProvider({ animation, setAnimation, ...props }: AnimationProviderProps): React.ReactElement {
-  return (
-    <SetAnimationContext.Provider value={setAnimation}>
-      <AnimationContext.Provider value={animation}>{props.children}</AnimationContext.Provider>
-    </SetAnimationContext.Provider>
-  );
-}
 
 function ModalStyleAlert() {
   const animation = useContext(AnimationContext);
