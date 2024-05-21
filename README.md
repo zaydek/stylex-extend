@@ -8,7 +8,7 @@ This repo aims to demonstrate what it might feel like to mix-and-match the conve
 vite-plugin-stylex-dev
 ```
 
-This repo relates to https://github.com/facebook/stylex/issues/534.
+This repo relates to the StyleX issue: [[RFC] Defining styles inline #534](https://github.com/facebook/stylex/issues/534).
 
 ## Try it yourself
 
