@@ -158,7 +158,6 @@ function DialogStyle1() {
             }),
           )}
         >
-          {/* MASTHEAD */}
           <div
             {...stylex.props(
               atom({
@@ -274,7 +273,6 @@ function DialogStyle2() {
         )}
         onAnimationEnd={() => setAnimation(handleAnimationEnd)}
       >
-        {/* MASTHEAD */}
         <div
           {...stylex.props(
             atom({
