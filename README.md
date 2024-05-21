@@ -8,6 +8,8 @@ This repo aims to demonstrate what it might feel like to mix-and-match the conve
 vite-plugin-stylex-dev
 ```
 
+This repo relates to https://github.com/facebook/stylex/issues/534.
+
 ## Try it yourself
 
 Clone this repo and install the NPM dependencies using `npm i` or equivalent. Then run `npm run dev` to start the development server. You can also run `npm run build` to build the distribution directory `dist`. 
