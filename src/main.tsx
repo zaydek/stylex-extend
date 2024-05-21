@@ -60,15 +60,6 @@ const modalStyles = stylex.create({
   },
 });
 
-//// const mastheadStyles = stylex.create({
-////   masthead: {
-////     backgroundColor: "blue",
-////     blockSize: 56,
-////     borderRadius: 1e3,
-////     inlineSize: 56,
-////   },
-//// });
-
 const resetStyles = stylex.create({
   button: {
     border: "none",
