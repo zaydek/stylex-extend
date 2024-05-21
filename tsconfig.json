@@ -1,11 +1,16 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": ["DOM"],
+    "baseUrl": ".",
+    "outDir": "dist",
+    "noImplicitThis": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "jsx": "react-jsx",
-    "moduleResolution": "Node",
-    "types": ["vite/client", "react", "react-dom"],
-    "jsxImportSource": "@stylex-extend/react"
+    "moduleResolution": "Bundler",
+    "types": ["vite/client", "react", "react-dom", "@stylex-extend/react"]
   }
 }
