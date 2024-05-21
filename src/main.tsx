@@ -310,6 +310,15 @@ function DialogStyle2() {
   );
 }
 
+const containerStyles = stylex.create({
+  container: {
+    alignItems: "center",
+    blockSize: "100dvh",
+    display: "flex",
+    justifyContent: "center",
+  },
+});
+
 function App() {
   const [dialog1, setDialog1] = useState<Animation>("HIDDEN");
   const [dialog2, setDialog2] = useState<Animation>("HIDDEN");
@@ -332,6 +341,12 @@ function App() {
   return (
     <>
       <DebugCSS />
+      <div {...stylex.props(containerStyles.container)}>
+        <div {...stylex.props(atom({ display: "flex", gap: 16 }))}>
+          <button onClick={() => setDialog1(toggleAnimation)}>Toggle the modal-style dialog</button>
+          <button onClick={() => setDialog2(toggleAnimation)}>Toggle the alert-style dialog</button>
+        </div>
+      </div>
       {dialog1 !== "HIDDEN" && (
         <AnimationProvider animation={dialog1} setAnimation={setDialog1}>
           <DialogStyle1 />

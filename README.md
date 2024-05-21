@@ -12,12 +12,12 @@ This repo relates to the StyleX issue: [[RFC] Defining styles inline #534](https
 
 ## Try it yourself
 
-Clone this repo and install the NPM dependencies using `npm i` or equivalent. Then run `npm run dev` to start the development server. You can also run `npm run build` to build the distribution directory `dist`. 
+Clone this repo and install the NPM dependencies using `npm i` or equivalent. Then run `npm run dev` to start the development server. You can also run `npm run build` to build the distribution directory `dist`.
 
 ## Extra
 
 Deployed here: https://664c91e75cdabe18b4a153f8--ornate-paletas-1d9edc.netlify.app/
 
-Press <kbd>\[</kbd> to toggle the alert <kbd>\]</kbd> to toggle the dialog.
+Press <kbd>\[</kbd> to toggle the modal-style dialog <kbd>\]</kbd> to toggle the alert-style dialog.
 
 https://github.com/zaydek/stylex-extend/assets/58870766/219392dd-7e52-4b76-b52f-04eb738df85b
