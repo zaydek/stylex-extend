@@ -1,6 +1,6 @@
 ## Early support for `inline` or `atom` in StyleX
 
-This repo aims to demonstrate what it might feel like to mix-and-match the conventional StyleX stylesheet API with inline styles made possibly by @nonzzz's packages:
+This repo aims to demonstrate what it might feel like to mix-and-match the conventional StyleX stylesheet API with inline styles made possibly by [@nonzzz](https://github.com/nonzzz)'s packages:
 
 ```
 @stylex-extend/core
